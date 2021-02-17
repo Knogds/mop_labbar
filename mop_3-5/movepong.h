@@ -26,8 +26,7 @@
 #define GPIO_PUPDR    (unsigned int *)   GPIOD_PUPDR
 #define GPIO_OSPEEDR  (unsigned int *)   GPIOD_OSPEEDR
 #define ROW_OUT       (unsigned char *) (GPIOD_ODR+1)
-#define COL_IN        (unsigned char *) (GPIOD_IDR+1)
-
+#define COL_IN        (volatile unsigned char *) (GPIOD_IDR+1)
 #define MAX_POINTS 30
 
 typedef struct {
@@ -47,25 +46,19 @@ typedef struct t_obj {
     void (*set_speed) (struct t_obj *, int, int);
 } object, *pobject;
 
-typedef struct {
-    int score;
-    int high_score;
-    int lives;
-} score, *pscore;
-
-void draw_object(pobject);
+char kbdGetCol(void);
+char keyb(void);
+geometry ball_geometry;
+int overlaps(pobject o0, pobject o1);
+int random_gen(void);
+static object ball;
+static object paddle;
 void clear_object(pobject);
+void draw_object(pobject);
 void draw_object_gen(pobject, int);
+void kbdActivate(char row);
 void move_ball(pobject);
 void move_paddle(pobject);
 void set_speed(pobject, int, int);
-int overlaps(pobject o0, pobject o1);
-geometry ball_geometry;
-static object ball;
-static object paddle;
-static score sc;
-char keyb(void);
-void kbdActivate(char row);
-char kbdGetCol(void);
 
 #endif

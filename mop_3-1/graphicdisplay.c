@@ -50,7 +50,7 @@ int main(void)
             xprintf("x0:%03d\nx1:%03d\ny0:%03d\ny1:%03d",
                     l->xy0.x, l->xy1.x, l->xy0.y, l->xy1.y);
             draw_line(l);
-            delay_milli(300);
+            delay_milli(500);
         }
 
         graphic_clear_screen();   
@@ -63,14 +63,14 @@ int main(void)
             xprintf("x:%02d y:%02d w:%02d h:%02d",
             r->origo.x, r->origo.y, r->width, r->height);
             draw_rect(r);
-            delay_milli(300);
+            delay_milli(500);
         }
         
         graphic_clear_screen();
         
         /* draw a polygon */
         draw_polygon(&pg1);
-        delay_milli(500);
+        delay_milli(1000);
         
         graphic_clear_screen();
 

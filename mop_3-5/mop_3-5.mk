@@ -51,7 +51,7 @@ AR       := /usr/share/codelite/tools/gcc-arm/bin/arm-none-eabi-ar rcu
 CXX      := /usr/share/codelite/tools/gcc-arm/bin/arm-none-eabi-g++
 CC       := /usr/share/codelite/tools/gcc-arm/bin/arm-none-eabi-gcc
 CXXFLAGS :=  -g -O0 -W $(Preprocessors)
-CFLAGS   :=  -g -O0 -w -mthumb -march=armv6-m  -mfloat-abi=soft -std=c99 $(Preprocessors)
+CFLAGS   :=  -g -O3 -w -mthumb -march=armv6-m  -mfloat-abi=soft -std=c99 $(Preprocessors)
 ASFLAGS  := 
 AS       := /usr/share/codelite/tools/gcc-arm/bin/arm-none-eabi-as
 

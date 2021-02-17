@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="labbar" Database="" Version="10.0.0">
   <Project Name="lab2" Path="lab2/lab2.project" Active="No"/>
-  <Project Name="mop_3-1" Path="mop_3-1/graphicdisplay.project" Active="No"/>
-  <Project Name="mop_3-5" Path="mop_3-5/movepong.project" Active="Yes"/>
+  <Project Name="mop_3-1" Path="mop_3-1/graphicdisplay.project" Active="Yes"/>
+  <Project Name="mop_3-5" Path="mop_3-5/movepong.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>

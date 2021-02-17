@@ -6,70 +6,73 @@
 int main(void)
 {
     int running = 1;
+    char key;
+    int ch_dir = 0;
     pobject b = &ball;
     pobject p = &paddle;
     
     init_app();
     graphic_initialize();
     graphic_clear_screen();
-    
     draw_object(b);
     draw_object(p);
-    new_game();
-    while(1){
-        while(running){
 
-            if(overlaps(b, p)){
+    while(1){
+        
+        new_game(b, p);
+        
+        while(running){
+            
+            /* use ch_dir to do it just once */
+            if(overlaps(b, p) && ch_dir == 1){
                 b->dirx *= -1;
-                //b->diry += b->...
-            }
+
+                ch_dir = 0;
+            } else
+                ch_dir = 1;
 
             if(ball_outside(b))
                 running = 0;
 
             p->move(p);
             b->move(b);
-                
-            delay_milli(8);
-            font_set_pos(80,1);
-            switch(keyb()){
-                case 6: p->set_speed(p, 3, 0); break;
-                case 4: p->set_speed(p, -3, 0); break;
-                case 5: p->set_speed(p, 0, 0); break;
-                case 2: p->set_speed(p, 0, -1); break;
-                case 8: p->set_speed(p, 0, 3); break;
-            }
+            
+            p->set_speed(p, 0, 0);
+            delay_milli(7);;
+            
+            key = keyb();
+            
+            if(key==3) p->set_speed(p, 0, -3);
+            if(key==9) p->set_speed(p, 0, 3);
+            
         }
         
         font_set_pos(40,23);
         xprintf("Game over");
         
-        font_set_pos(5,33);
+        font_set_pos(5,34);
         xprintf("Press 6 to continue");
         
         while(keyb() != 6){
-            font_set_pos(1,1);
-            xprintf("%d", keyb());
             __asm__("nop");
         }
+
+        running = 1;
     }
     return 0;
 }
 
-void new_game()
+void new_game(pobject b, pobject p)
 {
+    graphic_clear_screen();
+    
     draw_hline(1);
     draw_vline(1);
     draw_hline(64);
-    /*
-    sc.score = 0;
-    sc.lives = 3;
-     
-    font_set_pos(1,1);
-    xprintf("score: %03d", sc.score);
-    font_set_pos(70,1);
-    xprintf("lives: %d", sc.lives);
-    */
+    
+    b->posx = 70;
+    b->posy = 30;
+    
 }
 void init_app(void)
 {
@@ -81,7 +84,6 @@ void init_app(void)
     *GPIO_PUPDR = 0x00aa0000;
     /* low speed on all GPIOs (reset state for port D)*/
     *GPIO_OSPEEDR = 0;
-
 }
 
 void draw_object_gen(pobject o, int clear)
@@ -102,8 +104,6 @@ void draw_object_gen(pobject o, int clear)
     }
 }
 
-
-
 void draw_object(pobject o)
 {
     draw_object_gen(o, DRAW);
@@ -120,8 +120,7 @@ void move_ball(pobject o)
     int new_posx = o->posx + o->dirx;
     int ymin_out = (new_posy < 2);
     int ymax_out = (new_posy + o->geom->sizey > 64);
-    int xmin_out = (new_posx < 1);
-    //int xmax_out = (new_posx + o->geom->sizex > 128);
+    int xmin_out = (new_posx < 2);
 
     clear_object(o);
     
@@ -164,7 +163,7 @@ int ball_outside(pobject o)
 move_paddle(pobject o)
 {
     int new_posy = o->posy + o->diry;
-    int ymin_out = (new_posy < 10);
+    int ymin_out = (new_posy < 1);
     int ymax_out = (new_posy + o->geom->sizey > 64);
 
     if(!ymax_out && !ymin_out){
@@ -214,11 +213,7 @@ static object paddle = {
     set_speed
 };
 
-static score sc = {0, /* score */
-                   0, /* high score */
-                   3  /* lives */
-};
-
+/* works just for keys 3, 6, 9 */
 char keyb(void)
 {
     for(int i=4; i<=6; i++){            
