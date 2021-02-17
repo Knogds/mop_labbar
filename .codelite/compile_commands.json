@@ -1,0 +1,9 @@
+[{
+  "directory": "/home/kresimir/fax/maskinorienterad_programmering/codelite/labbar/movepong",
+  "command": "/usr/share/codelite/tools/gcc-arm/bin/arm-none-eabi-gcc -g -O3 -w -mthumb -march=armv6-m -mfloat-abi=soft -std=c99 -I. -I. -MG -MP -MT./Debug/movepong.c.o -MF./Debug/movepong.c.o.d -MM movepong.c",
+  "file": "/home/kresimir/fax/maskinorienterad_programmering/codelite/labbar/movepong/movepong.c"
+ }, {
+  "directory": "/home/kresimir/fax/maskinorienterad_programmering/codelite/labbar/movepong",
+  "command": "/usr/share/codelite/tools/gcc-arm/bin/arm-none-eabi-gcc -c /home/kresimir/fax/maskinorienterad_programmering/codelite/labbar/movepong/movepong.c -g -O3 -w -mthumb -march=armv6-m -mfloat-abi=soft -std=c99 -o ./Debug/movepong.c.o -I. -I.",
+  "file": "/home/kresimir/fax/maskinorienterad_programmering/codelite/labbar/movepong/movepong.c"
+ }]
