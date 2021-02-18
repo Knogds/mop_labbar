@@ -34,8 +34,10 @@ int main(void)
                 won = 0;
             }
 
-            p->move(p);
-            b->move(b);
+            if(running){
+                p->move(p);
+                b->move(b);
+            }
             
             p->set_speed(p, 0, 0);
             

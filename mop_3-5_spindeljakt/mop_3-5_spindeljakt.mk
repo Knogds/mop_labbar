@@ -66,7 +66,7 @@ ARM_M4SFPLIB:=$(CodeLiteDir)/tools/gcc-arm/arm-none-eabi/lib/thumb/v7e-m+fp/soft
 ARM_GCC_M4SFPLIB:=$(CodeLiteDir)/tools/gcc-arm/lib/gcc/arm-none-eabi/9.2.1/thumb/v7e-m+fp/softfp
 ARM_M4HFPLIB:=$(CodeLiteDir)/tools/gcc-arm/arm-none-eabi/lib/thumb/v7e-m+fp/hard
 ARM_GCC_M4HFPLIB:=$(CodeLiteDir)/tools/gcc-arm/lib/gcc/arm-none-eabi/9.2.1/thumb/v7e-m+fp/hard
-Objects0=$(IntermediateDirectory)/spindeljakt.c$(ObjectSuffix) $(IntermediateDirectory)/font_6x8.c$(ObjectSuffix) $(IntermediateDirectory)/font.c$(ObjectSuffix) $(IntermediateDirectory)/draw.c$(ObjectSuffix) $(IntermediateDirectory)/xprintf.c$(ObjectSuffix) $(IntermediateDirectory)/delay.c$(ObjectSuffix) $(IntermediateDirectory)/startup.c$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/startup.c$(ObjectSuffix) $(IntermediateDirectory)/font.c$(ObjectSuffix) $(IntermediateDirectory)/xprintf.c$(ObjectSuffix) $(IntermediateDirectory)/delay.c$(ObjectSuffix) $(IntermediateDirectory)/spindeljakt.c$(ObjectSuffix) $(IntermediateDirectory)/font_6x8.c$(ObjectSuffix) $(IntermediateDirectory)/draw.c$(ObjectSuffix) 
 
 
 
@@ -103,21 +103,13 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/spindeljakt.c$(ObjectSuffix): spindeljakt.c $(IntermediateDirectory)/spindeljakt.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/home/kresimir/fax/maskinorienterad_programmering/codelite/labbar/mop_3-5_spindeljakt/spindeljakt.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/spindeljakt.c$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/spindeljakt.c$(DependSuffix): spindeljakt.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/spindeljakt.c$(ObjectSuffix) -MF$(IntermediateDirectory)/spindeljakt.c$(DependSuffix) -MM spindeljakt.c
+$(IntermediateDirectory)/startup.c$(ObjectSuffix): startup.c $(IntermediateDirectory)/startup.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/home/kresimir/fax/maskinorienterad_programmering/codelite/labbar/mop_3-5_spindeljakt/startup.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/startup.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/startup.c$(DependSuffix): startup.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/startup.c$(ObjectSuffix) -MF$(IntermediateDirectory)/startup.c$(DependSuffix) -MM startup.c
 
-$(IntermediateDirectory)/spindeljakt.c$(PreprocessSuffix): spindeljakt.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/spindeljakt.c$(PreprocessSuffix) spindeljakt.c
-
-$(IntermediateDirectory)/font_6x8.c$(ObjectSuffix): font_6x8.c $(IntermediateDirectory)/font_6x8.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/home/kresimir/fax/maskinorienterad_programmering/codelite/labbar/mop_3-5_spindeljakt/font_6x8.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/font_6x8.c$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/font_6x8.c$(DependSuffix): font_6x8.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/font_6x8.c$(ObjectSuffix) -MF$(IntermediateDirectory)/font_6x8.c$(DependSuffix) -MM font_6x8.c
-
-$(IntermediateDirectory)/font_6x8.c$(PreprocessSuffix): font_6x8.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/font_6x8.c$(PreprocessSuffix) font_6x8.c
+$(IntermediateDirectory)/startup.c$(PreprocessSuffix): startup.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/startup.c$(PreprocessSuffix) startup.c
 
 $(IntermediateDirectory)/font.c$(ObjectSuffix): font.c $(IntermediateDirectory)/font.c$(DependSuffix)
 	$(CC) $(SourceSwitch) "/home/kresimir/fax/maskinorienterad_programmering/codelite/labbar/mop_3-5_spindeljakt/font.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/font.c$(ObjectSuffix) $(IncludePath)
@@ -126,14 +118,6 @@ $(IntermediateDirectory)/font.c$(DependSuffix): font.c
 
 $(IntermediateDirectory)/font.c$(PreprocessSuffix): font.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/font.c$(PreprocessSuffix) font.c
-
-$(IntermediateDirectory)/draw.c$(ObjectSuffix): draw.c $(IntermediateDirectory)/draw.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/home/kresimir/fax/maskinorienterad_programmering/codelite/labbar/mop_3-5_spindeljakt/draw.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/draw.c$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/draw.c$(DependSuffix): draw.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/draw.c$(ObjectSuffix) -MF$(IntermediateDirectory)/draw.c$(DependSuffix) -MM draw.c
-
-$(IntermediateDirectory)/draw.c$(PreprocessSuffix): draw.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/draw.c$(PreprocessSuffix) draw.c
 
 $(IntermediateDirectory)/xprintf.c$(ObjectSuffix): xprintf.c $(IntermediateDirectory)/xprintf.c$(DependSuffix)
 	$(CC) $(SourceSwitch) "/home/kresimir/fax/maskinorienterad_programmering/codelite/labbar/mop_3-5_spindeljakt/xprintf.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/xprintf.c$(ObjectSuffix) $(IncludePath)
@@ -151,13 +135,29 @@ $(IntermediateDirectory)/delay.c$(DependSuffix): delay.c
 $(IntermediateDirectory)/delay.c$(PreprocessSuffix): delay.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/delay.c$(PreprocessSuffix) delay.c
 
-$(IntermediateDirectory)/startup.c$(ObjectSuffix): startup.c $(IntermediateDirectory)/startup.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/home/kresimir/fax/maskinorienterad_programmering/codelite/labbar/mop_3-5_spindeljakt/startup.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/startup.c$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/startup.c$(DependSuffix): startup.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/startup.c$(ObjectSuffix) -MF$(IntermediateDirectory)/startup.c$(DependSuffix) -MM startup.c
+$(IntermediateDirectory)/spindeljakt.c$(ObjectSuffix): spindeljakt.c $(IntermediateDirectory)/spindeljakt.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/home/kresimir/fax/maskinorienterad_programmering/codelite/labbar/mop_3-5_spindeljakt/spindeljakt.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/spindeljakt.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/spindeljakt.c$(DependSuffix): spindeljakt.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/spindeljakt.c$(ObjectSuffix) -MF$(IntermediateDirectory)/spindeljakt.c$(DependSuffix) -MM spindeljakt.c
 
-$(IntermediateDirectory)/startup.c$(PreprocessSuffix): startup.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/startup.c$(PreprocessSuffix) startup.c
+$(IntermediateDirectory)/spindeljakt.c$(PreprocessSuffix): spindeljakt.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/spindeljakt.c$(PreprocessSuffix) spindeljakt.c
+
+$(IntermediateDirectory)/font_6x8.c$(ObjectSuffix): font_6x8.c $(IntermediateDirectory)/font_6x8.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/home/kresimir/fax/maskinorienterad_programmering/codelite/labbar/mop_3-5_spindeljakt/font_6x8.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/font_6x8.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/font_6x8.c$(DependSuffix): font_6x8.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/font_6x8.c$(ObjectSuffix) -MF$(IntermediateDirectory)/font_6x8.c$(DependSuffix) -MM font_6x8.c
+
+$(IntermediateDirectory)/font_6x8.c$(PreprocessSuffix): font_6x8.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/font_6x8.c$(PreprocessSuffix) font_6x8.c
+
+$(IntermediateDirectory)/draw.c$(ObjectSuffix): draw.c $(IntermediateDirectory)/draw.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/home/kresimir/fax/maskinorienterad_programmering/codelite/labbar/mop_3-5_spindeljakt/draw.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/draw.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/draw.c$(DependSuffix): draw.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/draw.c$(ObjectSuffix) -MF$(IntermediateDirectory)/draw.c$(DependSuffix) -MM draw.c
+
+$(IntermediateDirectory)/draw.c$(PreprocessSuffix): draw.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/draw.c$(PreprocessSuffix) draw.c
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

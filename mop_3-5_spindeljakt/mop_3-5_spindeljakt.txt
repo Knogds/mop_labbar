@@ -1,1 +1,1 @@
-./Debug/spindeljakt.c.o ./Debug/font_6x8.c.o ./Debug/font.c.o ./Debug/draw.c.o ./Debug/xprintf.c.o ./Debug/delay.c.o ./Debug/startup.c.o
+./Debug/startup.c.o ./Debug/font.c.o ./Debug/xprintf.c.o ./Debug/delay.c.o ./Debug/spindeljakt.c.o ./Debug/font_6x8.c.o ./Debug/draw.c.o
