@@ -45,7 +45,7 @@ int main(void)
     while(1){
 
         /* draw lines */
-        
+
         for(int i=0; i<sizeof(lines)/sizeof(line);i++){
             pline l = &lines[i];
             font_set_pos(1,10);
@@ -63,7 +63,7 @@ int main(void)
             prect r = &rectangles[i];
             font_set_pos(1,56);
             xprintf("x:%02d y:%02d w:%02d h:%02d",
-            r->origo.x, r->origo.y, r->width, r->height);
+                    r->origo.x, r->origo.y, r->width, r->height);
             draw_rect(r);
             delay_milli(500);
         }
@@ -74,6 +74,8 @@ int main(void)
         if(draw_polygon(&pg1) == ERROR){
             font_set_pos(1,21);
             xprintf("Error, the polygon\nis not correctly\ndefined.");
+            while(1)
+                __asm__("nop");
         }
             
         delay_milli(1000);

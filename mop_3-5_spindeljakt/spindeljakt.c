@@ -28,7 +28,7 @@ int main(void)
                 running = 0;
                 won = 1;
             }
-                
+
             if(outside(p)){
                 running = 0;
                 won = 0;
@@ -38,7 +38,8 @@ int main(void)
                 p->move(p);
                 b->move(b);
             }
-            
+
+            /* stop movement when a key is released */
             p->set_speed(p, 0, 0);
             
             delay_milli(8);
@@ -228,8 +229,6 @@ static object creature = {
     set_speed
 };
 
-
-
 /*
 ROW_OUT: b4----1  2  3  A
          b5----4  5  6  B
@@ -239,6 +238,7 @@ ROW_OUT: b4----1  2  3  A
               b0 b1 b2 b3
 COL_IN value:  1  2  4  8
 */
+ 
  
 /* use only the keys we need */
 char keyb(void)

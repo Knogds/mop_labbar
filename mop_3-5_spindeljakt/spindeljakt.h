@@ -3,12 +3,6 @@
 
 #include "draw.h"
 
-#define A 10
-#define B 11
-#define C 12
-#define D 13
-#define STAR 14
-#define HASH 15
 #define CLEAR 1
 #define DRAW 0
 
