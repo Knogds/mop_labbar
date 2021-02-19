@@ -2,6 +2,8 @@
 #include "draw.h"
 #include "font.h"
 
+#define ERROR 1
+
 int main(void)
 {
     line lines[] = {
@@ -65,11 +67,15 @@ int main(void)
             draw_rect(r);
             delay_milli(500);
         }
-        
+
         graphic_clear_screen();
         
         /* draw a polygon */
-        draw_polygon(&pg1);
+        if(draw_polygon(&pg1) == ERROR){
+            font_set_pos(1,21);
+            xprintf("Error, the polygon\nis not correctly\ndefined.");
+        }
+            
         delay_milli(1000);
         
         graphic_clear_screen();

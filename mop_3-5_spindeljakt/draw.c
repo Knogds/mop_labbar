@@ -23,11 +23,16 @@ void draw_rect(prect r)
     draw_line_xy(x0, x0, y0, y0+height);
 }
 
+/* return 1 if polygon cannot be drawn */
 int draw_polygon(ppolypoint pp)
 {
-    while(pp->next != 0){
-        draw_line_xy(pp->xy.x, pp->next->xy.x, pp->xy.y, pp->next->xy.y);
-        pp = pp->next;
+    if(pp->next == 0)
+        return 1;
+    else {
+        while(pp->next != 0){
+            draw_line_xy(pp->xy.x, pp->next->xy.x, pp->xy.y, pp->next->xy.y);
+            pp = pp->next;
+        }        
     }
     return 0;
 }

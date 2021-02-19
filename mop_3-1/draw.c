@@ -26,10 +26,9 @@ void draw_rect(prect r)
 /* return 1 if polygon cannot be drawn */
 int draw_polygon(ppolypoint pp)
 {
-    
     if(pp->next == 0)
         return 1;
-    else{
+    else {
         while(pp->next != 0){
             draw_line_xy(pp->xy.x, pp->next->xy.x, pp->xy.y, pp->next->xy.y);
             pp = pp->next;

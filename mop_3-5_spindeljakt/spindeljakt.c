@@ -41,7 +41,7 @@ int main(void)
             
             p->set_speed(p, 0, 0);
             
-            delay_milli(10);
+            delay_milli(8);
             
             key = keyb();
             
@@ -129,8 +129,6 @@ void move_ball(pobject o)
     int ymax_out = (new_posy + o->geom->sizey > 64);
     int xmin_out = (new_posx < 1);
     int xmax_out = (new_posx + o->geom->sizey > 128);
-
-    clear_object(o);
     
     if(xmin_out || xmax_out){
         o->dirx *= -1;
@@ -139,6 +137,8 @@ void move_ball(pobject o)
     if(ymax_out || ymin_out){
         o->diry *= -1;
     }
+
+    clear_object(o);
     
     o->posx += o->dirx;
     o->posy += o->diry;
@@ -230,7 +230,7 @@ static object creature = {
 
 
 
-/*§
+/*
 ROW_OUT: b4----1  2  3  A
          b5----4  5  6  B
          b6----7  8  9  C
