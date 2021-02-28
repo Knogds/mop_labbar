@@ -1,4 +1,3 @@
-
 #include "systick_irq.h"
 
 volatile int systick_flag;

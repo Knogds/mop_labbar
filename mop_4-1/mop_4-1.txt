@@ -1,1 +1,1 @@
-./Debug/systick_irq.c.o ./Debug/startup.c.o
+./Debug/startup.c.o ./Debug/systick_irq.c.o

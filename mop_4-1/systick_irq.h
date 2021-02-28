@@ -36,6 +36,7 @@
 #define STK_LOAD  (volatile unsigned int *) (STK + 0x4)
 #define STK_VAL   (volatile unsigned int *) (STK + 0x8)
 
+/* 168Mhz -> 1Mhz */
 #define RELOAD_VALUE (0xa8-1)
 
 /* for STK_CTRL bit configuration */

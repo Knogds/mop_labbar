@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=kresimir
-Date                   :=23/02/21
+Date                   :=26/02/21
 CodeLitePath           :=/home/kresimir/.codelite
 LinkerName             :=/usr/share/codelite/tools/gcc-arm/bin/arm-none-eabi-g++
 SharedObjectLinkerName :=/usr/share/codelite/tools/gcc-arm/bin/arm-none-eabi-g++ -shared -fPIC
@@ -66,7 +66,7 @@ ARM_M4SFPLIB:=$(CodeLiteDir)/tools/gcc-arm/arm-none-eabi/lib/thumb/v7e-m+fp/soft
 ARM_GCC_M4SFPLIB:=$(CodeLiteDir)/tools/gcc-arm/lib/gcc/arm-none-eabi/9.2.1/thumb/v7e-m+fp/softfp
 ARM_M4HFPLIB:=$(CodeLiteDir)/tools/gcc-arm/arm-none-eabi/lib/thumb/v7e-m+fp/hard
 ARM_GCC_M4HFPLIB:=$(CodeLiteDir)/tools/gcc-arm/lib/gcc/arm-none-eabi/9.2.1/thumb/v7e-m+fp/hard
-Objects0=$(IntermediateDirectory)/systick_irq.c$(ObjectSuffix) $(IntermediateDirectory)/startup.c$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/startup.c$(ObjectSuffix) $(IntermediateDirectory)/systick_irq.c$(ObjectSuffix) 
 
 
 
@@ -103,14 +103,6 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/systick_irq.c$(ObjectSuffix): systick_irq.c $(IntermediateDirectory)/systick_irq.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/home/kresimir/fax/maskinorienterad_programmering/codelite/labbar/mop_4-1/systick_irq.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/systick_irq.c$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/systick_irq.c$(DependSuffix): systick_irq.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/systick_irq.c$(ObjectSuffix) -MF$(IntermediateDirectory)/systick_irq.c$(DependSuffix) -MM systick_irq.c
-
-$(IntermediateDirectory)/systick_irq.c$(PreprocessSuffix): systick_irq.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/systick_irq.c$(PreprocessSuffix) systick_irq.c
-
 $(IntermediateDirectory)/startup.c$(ObjectSuffix): startup.c $(IntermediateDirectory)/startup.c$(DependSuffix)
 	$(CC) $(SourceSwitch) "/home/kresimir/fax/maskinorienterad_programmering/codelite/labbar/mop_4-1/startup.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/startup.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/startup.c$(DependSuffix): startup.c
@@ -118,6 +110,14 @@ $(IntermediateDirectory)/startup.c$(DependSuffix): startup.c
 
 $(IntermediateDirectory)/startup.c$(PreprocessSuffix): startup.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/startup.c$(PreprocessSuffix) startup.c
+
+$(IntermediateDirectory)/systick_irq.c$(ObjectSuffix): systick_irq.c $(IntermediateDirectory)/systick_irq.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/home/kresimir/fax/maskinorienterad_programmering/codelite/labbar/mop_4-1/systick_irq.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/systick_irq.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/systick_irq.c$(DependSuffix): systick_irq.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/systick_irq.c$(ObjectSuffix) -MF$(IntermediateDirectory)/systick_irq.c$(DependSuffix) -MM systick_irq.c
+
+$(IntermediateDirectory)/systick_irq.c$(PreprocessSuffix): systick_irq.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/systick_irq.c$(PreprocessSuffix) systick_irq.c
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
