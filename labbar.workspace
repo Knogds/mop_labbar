@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="labbar" Database="" Version="10.0.0">
   <Project Name="lab2" Path="lab2/lab2.project" Active="No"/>
-  <Project Name="mop_3-1" Path="mop_3-1/graphicdisplay.project" Active="Yes"/>
+  <Project Name="mop_3-1" Path="mop_3-1/graphicdisplay.project" Active="No"/>
   <Project Name="mop_3-5" Path="mop_3-5/movepong.project" Active="No"/>
   <Project Name="mop_3-5_spindeljakt" Path="mop_3-5_spindeljakt/mop_3-5_spindeljakt.project" Active="No"/>
+  <Project Name="mop_4-1" Path="mop_4-1/mop_4-1.project" Active="No"/>
+  <Project Name="mop_4-2" Path="mop_4-2/mop_4-2.project" Active="No"/>
+  <Project Name="mop_4-3" Path="mop_4-3/mop_4-3.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
@@ -12,6 +15,9 @@
       <Project Name="mop_3-5" ConfigName="Debug"/>
       <Project Name="mop_3-5_spindeljakt" ConfigName="Debug"/>
       <Project Name="mop_3-5_spindeljakt" ConfigName="Debug"/>
+      <Project Name="mop_4-1" ConfigName="Debug"/>
+      <Project Name="mop_4-2" ConfigName="Debug"/>
+      <Project Name="mop_4-3" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
@@ -20,6 +26,9 @@
       <Project Name="mop_3-5" ConfigName="Release"/>
       <Project Name="mop_3-5_spindeljakt" ConfigName="Release"/>
       <Project Name="mop_3-5_spindeljakt" ConfigName="Release"/>
+      <Project Name="mop_4-1" ConfigName="Release"/>
+      <Project Name="mop_4-2" ConfigName="Release"/>
+      <Project Name="mop_4-3" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

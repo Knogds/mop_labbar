@@ -33,7 +33,7 @@ int main(void)
     init_app();
 
     while(1){
-        __asm__("nop");
+
     }
 }
 
@@ -47,8 +47,8 @@ static void init_app(void)
     *GPIOD_OSPEEDR = 0; /* low speed (reset state) */
     
     /* Connected to ext. interrupt hardware */
-    *GPIOE_MODER = 0x55550000;  /* [15:8] Out [7:0] In */
-    *GPIOE_PUPDR = 0x0000aaaa;  /* [15:8] No pull-up/down [7:0] Pull-down */
+    *GPIOE_MODER = 0x00005500;  /* [15:8] Out [7:0] In */
+    *GPIOE_PUPDR = 0x000000aa;  /* [15:8] No pull-up/down [7:0] Pull-down */
 
     *SYSCFG_EXTICR1 &= ~0xf000; /* SYSCFG_EXTICR1: external interrupt
                                    configuration register 1 */
@@ -62,7 +62,6 @@ static void init_app(void)
     *EXTI_FTSR &= ~(1<<3);      /* Falling edge disable (reset state) */
     *NVIC_ISER0 |= (1<<9);      /* Nested vectored interrupt controller
                                    1: Enable interrupt */
-
 }
 
 static void exti3_irq_handler()
