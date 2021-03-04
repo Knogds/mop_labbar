@@ -8,6 +8,10 @@ MEMORY
   RAM (xrw) : ORIGIN = 0x20000000, LENGTH = 108K
 }
 
+ENTRY(main)
+
+PROVIDE(_stack = 0x2001C000);
+
 SECTIONS
 {
      .text :
@@ -25,4 +29,4 @@ SECTIONS
 	. = ALIGN(4);
     } >RAM
     
- }
+}

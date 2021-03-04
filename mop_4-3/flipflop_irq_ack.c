@@ -50,7 +50,7 @@ int main(void)
 static void init_app(void)
 {
     *SCB_VTOR = VECTOR_TABLE_BASE;
-    *(void (**)(void)) EXTI3_HANDLER = exti3_irq_handler;
+    *EXTI3_HANDLER = exti3_irq_handler;
  
     *GPIOD_MODER = 0x55555555; /* Out */
     
@@ -111,10 +111,10 @@ static void exti3_irq_handler()
         else
             hex_display = 0;
     }
-
-    rst_hw_irq(IRQ_RST_ALL);
     
     *GPIOD_ODR = hex_display;
+
+    rst_hw_irq(IRQ_RST_ALL);
 }
 
 void rst_hw_irq(unsigned int irqrst){

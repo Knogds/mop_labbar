@@ -5,8 +5,12 @@ volatile int delay_count;
 
 int main(void)
 {
+    
     init_app();
-
+    *GPIO_ODR = 0;
+    delay(DELAY_COUNT);
+    *GPIO_ODR_LOW =0xff;
+    
     while(1){
         if(systick_flag)
             break;
@@ -28,11 +32,7 @@ void init_app(void)
     /* low speed on all GPIOs (reset state for port D)*/
     *GPIO_OSPEEDR = 0;
     
-    *GPIO_ODR = 0;
-    
-    delay(DELAY_COUNT);
 
-    *GPIO_ODR_LOW =0xff;
 }
 
 void delay(unsigned int n)

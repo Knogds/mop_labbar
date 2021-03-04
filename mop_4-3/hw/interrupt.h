@@ -54,16 +54,16 @@
 #define NVIC_ICPR(x)  (volatile unsigned int *)(BUS_PPB + 0xe280 + (0x04 * x))
 #define NVIC_IABR(x)  (volatile unsigned int *)(BUS_PPB + 0xe300 + (0x04 * x))
 
-/* NVIC_ISER0 interrupts 0-31 ..add prefix? */
+/* NVIC_ISER0 interrupts 0-31 */
 #define IRQ_WWDF                (1<<0)
 #define IRQ_PVD                 (1<<1)
 #define IRQ_TAMP_STAMP          (1<<2)
 #define IRQ_RTC_WKUP            (1<<3)
 #define IRQ_FLASH               (1<<4)
 #define IRQ_RCC                 (1<<5)
-#define IRQ_EXTI0 (1<<6)
-#define IRQ_EXTI1 (1<<7)
-#define IRQ_EXTI2 (1<<8)
+#define IRQ_EXTI0               (1<<6)
+#define IRQ_EXTI1               (1<<7)
+#define IRQ_EXTI2               (1<<8)
 #define IRQ_EXTI3               (1<<9)
 #define IRQ_EXTI4              (1<<10)
 #define IRQ_DMA1_Stream0       (1<<11)

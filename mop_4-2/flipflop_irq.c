@@ -22,9 +22,9 @@
  * 
  * outputs: b[7:4]
  * 
- * b4 "hi" resets b0
- * b5 "hi" resets b1
- * b6 "hi" resets b2
+ * b4 rising edge resets IRQ1
+ * b5 rising edge resets IRQ2
+ * b6 rising edge resets IRQCLK
  * 
  */
 
@@ -66,7 +66,6 @@ static void init_app(void)
 
 static void exti3_irq_handler()
 {
-
     static int hex_display;
     
     if(hex_display > 0xff)
