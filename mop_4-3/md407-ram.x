@@ -10,8 +10,6 @@ MEMORY
 
 ENTRY(main)
 
-PROVIDE(_stack = 0x2001C000);
-
 SECTIONS
 {
      .text :
@@ -30,3 +28,5 @@ SECTIONS
     } >RAM
     
 }
+
+PROVIDE(_stack = 0x2001C000);
