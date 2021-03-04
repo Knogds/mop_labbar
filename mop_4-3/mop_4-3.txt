@@ -1,1 +1,1 @@
-./Debug/flipflop_irq_ack.c.o ./Debug/startup.c.o
+./Debug/flipflop_irq_ack.c.o

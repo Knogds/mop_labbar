@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=kresimir
-Date                   :=01/03/21
+Date                   :=04/03/21
 CodeLitePath           :=/home/kresimir/.codelite
 LinkerName             :=/usr/share/codelite/tools/gcc-arm/bin/arm-none-eabi-g++
 SharedObjectLinkerName :=/usr/share/codelite/tools/gcc-arm/bin/arm-none-eabi-g++ -shared -fPIC
@@ -66,7 +66,7 @@ ARM_M4SFPLIB:=$(CodeLiteDir)/tools/gcc-arm/arm-none-eabi/lib/thumb/v7e-m+fp/soft
 ARM_GCC_M4SFPLIB:=$(CodeLiteDir)/tools/gcc-arm/lib/gcc/arm-none-eabi/9.2.1/thumb/v7e-m+fp/softfp
 ARM_M4HFPLIB:=$(CodeLiteDir)/tools/gcc-arm/arm-none-eabi/lib/thumb/v7e-m+fp/hard
 ARM_GCC_M4HFPLIB:=$(CodeLiteDir)/tools/gcc-arm/lib/gcc/arm-none-eabi/9.2.1/thumb/v7e-m+fp/hard
-Objects0=$(IntermediateDirectory)/flipflop_irq_ack.c$(ObjectSuffix) $(IntermediateDirectory)/startup.c$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/flipflop_irq_ack.c$(ObjectSuffix) 
 
 
 
@@ -110,14 +110,6 @@ $(IntermediateDirectory)/flipflop_irq_ack.c$(DependSuffix): flipflop_irq_ack.c
 
 $(IntermediateDirectory)/flipflop_irq_ack.c$(PreprocessSuffix): flipflop_irq_ack.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/flipflop_irq_ack.c$(PreprocessSuffix) flipflop_irq_ack.c
-
-$(IntermediateDirectory)/startup.c$(ObjectSuffix): startup.c $(IntermediateDirectory)/startup.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/home/kresimir/fax/maskinorienterad_programmering/codelite/labbar/mop_4-3/startup.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/startup.c$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/startup.c$(DependSuffix): startup.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/startup.c$(ObjectSuffix) -MF$(IntermediateDirectory)/startup.c$(DependSuffix) -MM startup.c
-
-$(IntermediateDirectory)/startup.c$(PreprocessSuffix): startup.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/startup.c$(PreprocessSuffix) startup.c
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

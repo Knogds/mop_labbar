@@ -18,6 +18,7 @@
     </Plugin>
   </Plugins>
   <VirtualDirectory Name="hw">
+    <File Name="hw/gpio.h"/>
     <File Name="hw/syscfg.h"/>
     <File Name="hw/systick.h"/>
     <File Name="hw/interrupt.h"/>
@@ -141,7 +142,6 @@ monitor restart</PostConnectCommands>
   <VirtualDirectory Name="src">
     <File Name="flipflop_irq_ack.h"/>
     <File Name="flipflop_irq_ack.c"/>
-    <File Name="startup.c"/>
   </VirtualDirectory>
   <VirtualDirectory Name="resources">
     <File Name="md407-ram.x"/>
