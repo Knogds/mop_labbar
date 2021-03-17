@@ -1,0 +1,1 @@
+./Debug/sve.c.o ./Debug/startup-crt.c.o
