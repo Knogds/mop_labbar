@@ -273,7 +273,7 @@ static int keypad_init( int initval )
 }
 
 static void keypad_deinit(int deinitval){
-    /* Set all register to their reset state */
+    /* Set all registers to their reset state */
     GPIOD->moder = 0;
     GPIOD->otyper = 0;
     GPIOD->pupdr = 0;
@@ -507,9 +507,15 @@ static void usart_deinit(int deinitval)
     USART1->cr3 = 0;
 }
 
-static int usart_write(char *ptr, int len){/* TODO */}
+static int usart_write(char *ptr, int len)
+{
+    while(len--)
+        _outchar(*ptr++);
+}
 
-static int usart_read(char *ptr, int len){/* TODO */}
+static int usart_read(char *ptr, int len){
+
+}
 
 
 
