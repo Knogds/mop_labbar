@@ -204,10 +204,6 @@ static int asciidisplay_write(char *ptr, int len)
 	return len;
 }
 
-static void wait_for_disp(void)
-{
-	while ((ascii_read_status() & 0x80) == 0x80);
-}
 
 
 
