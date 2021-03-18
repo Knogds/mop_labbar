@@ -9,9 +9,39 @@
 #include <stdio.h>
 #include <errno.h>
 #include <sys/stat.h>
+#include "delay.h"
+#include <gpio.h>
+#include <stdint.h>
 
 /* Type definitions */
 #include <sys/stat.h>
+
+#define PERIPH                  0x40000000
+#define AHB1          (PERIPH +    0x20000)
+#define GPIOE         (AHB1   +     0x1000)
+#define GPIOE_MODER   (GPIOE  +        0x0)
+#define GPIOE_OTYPER  (GPIOE  +        0x4)
+#define GPIOE_OSPEEDR (GPIOE  +        0x8)
+#define GPIOE_PUPDR   (GPIOE  +        0xC)
+#define GPIOE_IDR     (GPIOE  +       0x10)
+#define GPIOE_ODR     (GPIOE  +       0x14)
+#define GPIO_MODER    (uint32_t *) GPIOE_MODER
+#define GPIO_OTYPER   (uint32_t *) GPIOE_OTYPER
+#define GPIO_OSPEEDR  (uint32_t *) GPIOE_OSPEEDR
+#define GPIO_PUPDR    (uint32_t *) GPIOE_PUPDR
+/* high bits, data on LCD */
+#define DATA_ODR      (uint8_t *) (GPIOE_ODR+1)
+#define DATA_IDR      (volatile uint8_t *) (GPIOE_IDR+1)
+/* low bits, command bits on LCD */
+#define COMMAND_ODR   (uint8_t *)  GPIOE_ODR
+
+#define E       6
+#define SELECT  2
+#define RW      1
+#define RS      0
+
+enum {B_RS=1, B_RW=2, B_SELECT=4, B_CS1=8, B_CS2=0x10, B_RST=0x20, B_E=0x40};
+
 
 typedef struct {
     char name[16];
@@ -35,6 +65,7 @@ enum {STDIN=0,STDOUT,STDERR,KEYPAD,ASCIIDISPLAY};
 int _isatty(int file);
 // (#include "libMD407.h")// (#include "libMD407.h")// (#include "libMD407.h")
 
+//static int asciidisplay_init( int initval );
 static int asciidisplay_init( int initval );
 static void asciidisplay_deinit( int deinitval);
 static int asciidisplay_write(char *ptr, int len);
@@ -59,11 +90,124 @@ DEV_DRIVER_DESC AsciiDisplay =
 
 /* Define functions here */
 
-static int asciidisplay_init( int initval ){/* TODO */}
-static void asciidisplay_deinit( int deinitval){/* TODO */}
-static int asciidisplay_write(char *ptr, int len){/* TODO */}
+void delay_systick(uint32_t load)
+{
+    *SYSTICK_LOAD = load;
+    *SYSTICK_VAL = 0;
+    *SYSTICK_CTRL = 5;
+    while((*SYSTICK_CTRL & (1<<16)) == 0){
+        __asm__("nop");
+    };
+}
 
 
+void ascii_ctrl_bit_set(uint8_t x)
+{
+    *COMMAND_ODR |= (1 << SELECT)|(1 << x);
+}
+
+
+void ascii_ctrl_bit_clear(uint8_t x)
+{
+    *COMMAND_ODR &= ~(1 << x);
+    *COMMAND_ODR |= (1 << SELECT);
+}
+
+
+uint8_t ascii_read_controller(void) //Check
+{
+    uint8_t data;
+    ascii_ctrl_bit_set(E);
+    /* delay >360ns */
+    delay_systick(0x85f);
+    data = *DATA_IDR;
+    ascii_ctrl_bit_clear(E);
+    return data;
+}
+
+uint8_t ascii_read_status(void) //Check
+{
+    uint8_t data;
+    *GPIO_MODER = 0x00005555;
+    ascii_ctrl_bit_clear(RS);
+    ascii_ctrl_bit_set(RW);
+    data = ascii_read_controller();
+    *GPIO_MODER = 0x55555555;
+    delay_micro(43);
+    return data;
+}
+
+void ascii_write_controller(uint8_t byte) //check
+{
+    /* delay >40ns */
+    delay_systick(0xee);
+    ascii_ctrl_bit_set(E);
+    *DATA_ODR = byte;
+    ascii_ctrl_bit_clear(E);
+    /* delay >10ns */
+    delay_systick(0x3c);
+}
+
+void ascii_write_cmd(uint8_t command) //Check
+{
+    ascii_ctrl_bit_clear(RS);
+    ascii_ctrl_bit_clear(RW);
+    ascii_write_controller(command);
+}
+
+void ascii_write_data(uint8_t data) // Check
+{
+    ascii_ctrl_bit_set(RS);
+    ascii_ctrl_bit_clear(RW);
+    ascii_write_controller(data);
+}
+
+void ascii_write_char(uint8_t c) //Check
+{
+    while(ascii_read_status() != 0){
+        __asm__("nop");
+    }
+    delay_micro(8);
+    ascii_write_data(c);
+    delay_micro(43);
+}
+
+static void ascii_cmd( int initval)
+{
+    while ((ascii_read_status() & 0x80) == 0x80);
+    delay_micro(8);
+    ascii_write_cmd(initval);
+    delay_micro(39);
+}
+
+static int asciidisplay_init( int initval ) 
+{
+    *GPIO_MODER = 0x55555555;
+    
+    ascii_cmd(0x38);    // Set rows and dots
+    ascii_cmd(0xE);     // Activate cursor
+	ascii_cmd(0x6);     // Entry mode
+	ascii_cmd(0x1);     // Clear display
+    
+    return 0;
+}
+
+static void asciidisplay_deinit( int deinitval)
+{
+    *GPIO_MODER = 0x55555555;
+}
+
+static int asciidisplay_write(char *ptr, int len)
+{
+	for (int i = 0; i < len; i++)
+		ascii_write_char(*ptr++);
+	return len;
+}
+
+static void wait_for_disp(void)
+{
+	while ((ascii_read_status() & 0x80) == 0x80);
+}
 
 
 
